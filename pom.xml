@@ -80,3 +80,44 @@
 	</build>
 
 </project>
+
+SELECT
+    atn.codigo_atendimento,
+    atn.data_inclusao_atendimento,
+    mnf.nome_manifestante,
+    apa.nome_assunto,
+    cla.nome_classificacao_atendimento
+FROM
+    SC_CAD.TBL_ATN atn
+    INNER JOIN SC_CAD.TBL_MNF mnf ON atn.id_manifestante = mnf.id_manifestante
+    INNER JOIN SC_CAD.TBL_APA apa ON atn.id_assunto = apa.id_assunto
+    INNER JOIN SC_CAD.TBL_CLA cla ON atn.id_classificacao = cla.id_classificacao
+WHERE
+    atn.data_inclusao_atendimento >= '2020-02-10' AND
+    atn.data_inclusao_atendimento < '2020-02-16'
+ORDER BY
+    atn.data_inclusao_atendimento DESC;
+
+
+
+	    SELECT
+    apa.nome_assunto,
+    cla.nome_classificacao_atendimento,
+    COUNT(*) AS quantidade
+
+FROM
+    SC_CAD.TBL_ATN atn
+    INNER JOIN SC_CAD.TBL_APA apa ON atn.id_assunto = apa.id_assunto
+    INNER JOIN SC_CAD.TBL_CLA cla ON atn.id_classificacao = cla.id_classificacao
+
+WHERE
+    atn.data_inclusao_atendimento >= '2020-06-01' AND
+    atn.data_inclusao_atendimento < '2020-07-01'
+
+GROUP BY
+    apa.nome_assunto,
+    cla.nome_classificacao_atendimento
+
+ORDER BY
+    cla.nome_classificacao_atendimento ASC,
+    apa.nome_assunto ASC;
