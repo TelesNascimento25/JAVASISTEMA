@@ -308,3 +308,40 @@ exec "$JAVACMD" \
   -classpath "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar" \
   "-Dmaven.home=${M2_HOME}" "-Dmaven.multiModuleProjectDirectory=${MAVEN_PROJECTBASEDIR}" \
   ${WRAPPER_LAUNCHER} $MAVEN_CONFIG "$@"
+
+Scanner sc = new Scanner(System.in);
+		ArrayList<Integer> numeros = new ArrayList<Integer>();
+		
+		 System.out.print("Digite os 4 números:  ");
+		 
+		 	for(int i = 0; i < 4; i++) {
+		     System.out.print("Numero " + (i + 1) + ": ");
+		     numeros.add(sc.nextInt());
+		 }
+
+		 System.out.println("Você deseja em ordem crescente (1) ou decrescente (2) ?");
+		 int escolha = sc.nextInt();
+		         
+		 if (escolha == 2) {
+		     Collections.sort(numeros, Collections.reverseOrder());
+		 }
+		 
+		 ArrayList<Integer> pares = new ArrayList<Integer>();
+		 ArrayList<Integer> impares = new ArrayList<Integer>();
+		 
+		 for (int numero : numeros) { 
+		 if (numero % 2 == 0) { 
+			 pares.add(numero); } 
+		 else 
+		 { impares.add(numero);
+		 }
+		 
+		 }
+		 System.out.println("Numbers in order:");
+		 numeros.forEach(System.out::println);
+		 
+		 System.out.println("Quantidade de numeros pares :" + pares.size());
+		 System.out.println("Numeros pares :" + pares);
+		 
+		 System.out.println("Quantidade de numeros impares :" + impares.size());
+		 System.out.println("Numeros impares:" + impares);
