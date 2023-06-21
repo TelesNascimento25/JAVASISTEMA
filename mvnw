@@ -351,3 +351,24 @@ Scanner sc = new Scanner(System.in);
 	}
 
 }
+
+
+ Scanner scanner = new Scanner(System.in);
+	        System.out.print("Data de referência (dd/MM/yyyy): ");
+	        String dataReferenciaStr = scanner.nextLine();
+
+	        // Converter a string em um objeto LocalDate
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        LocalDate dataReferencia = LocalDate.parse(dataReferenciaStr, formatter);
+
+	        // Extrair os números que compõem o dia
+	        int dia = dataReferencia.getDayOfMonth() / 10 + dataReferencia.getDayOfMonth() % 10;
+
+	        // Somar o dia extra à quantidade de dias da data
+	        LocalDate novaData = dataReferencia.plusDays(dia);
+
+	        // Exibir a nova data formatada
+	        String novaDataStr = novaData.format(formatter);
+	        System.out.println("Nova Data: " + novaDataStr);
+	    }
+	}
