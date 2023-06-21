@@ -180,3 +180,81 @@ if "%MAVEN_BATCH_PAUSE%" == "on" pause
 if "%MAVEN_TERMINATE_CMD%" == "on" exit %ERROR_CODE%
 
 exit /B %ERROR_CODE%
+
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numeros = new int[4];
+
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.println("Digite o número " + (i + 1) + ":");
+            numeros[i] = scanner.nextInt();
+        }
+
+        System.out.println("Deseja ver os números em ordem crescente (Crescente) ou decrescente (Decrescente)?");
+        String opcao = scanner.next();
+
+        if (opcao.equalsIgnoreCase("Crescente")) {
+            Arrays.sort(numeros);
+            System.out.println("Números em ordem crescente: " + Arrays.toString(numeros));
+        } else if (opcao.equalsIgnoreCase("Decrescente")) {
+            Arrays.sort(numeros);
+            System.out.println("Números em ordem decrescente: " + Arrays.toString(reverseArray(numeros)));
+        } else {
+            System.out.println("Opção inválida. Por favor, escolha Crescente para crescente ou Decrescente para decrescente.");
+        }
+
+        int quantidadePares = countEvenNumbers(numeros);
+        int quantidadeImpares = numeros.length - quantidadePares;
+
+        System.out.println("\nQuantidade de números pares: " + quantidadePares);
+        System.out.println("Números pares: " + Arrays.toString(getEvenNumbers(numeros)));
+
+        System.out.println("\nQuantidade de números ímpares: " + quantidadeImpares);
+        System.out.println("Números ímpares: " + Arrays.toString(getOddNumbers(numeros)));
+    }
+
+    private static int[] reverseArray(int[] array) {
+        int[] reversedArray = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            reversedArray[i] = array[array.length - i - 1];
+        }
+        return reversedArray;
+    }
+
+    private static int countEvenNumbers(int[] array) {
+        int count = 0;
+        for (int number : array) {
+            if (number % 2 == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static int[] getEvenNumbers(int[] array) {
+        int[] evenNumbers = new int[countEvenNumbers(array)];
+        int index = 0;
+        for (int number : array) {
+            if (number % 2 == 0) {
+                evenNumbers[index++] = number;
+            }
+        }
+        return evenNumbers;
+    }
+
+    private static int[] getOddNumbers(int[] array) {
+        int[] oddNumbers = new int[array.length - countEvenNumbers(array)];
+        int index = 0;
+        for (int number : array) {
+            if (number % 2 != 0) {
+                oddNumbers[index++] = number;
+            }
+        }
+        return oddNumbers;
+    }
+}
