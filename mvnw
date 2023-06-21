@@ -345,3 +345,9 @@ Scanner sc = new Scanner(System.in);
 		 
 		 System.out.println("Quantidade de numeros impares :" + impares.size());
 		 System.out.println("Numeros impares:" + impares);
+		  
+		 
+		 
+	}
+
+}
